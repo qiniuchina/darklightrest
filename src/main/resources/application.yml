@@ -3,28 +3,21 @@ server:
   session-timeout: 30
   tomcat.uri-encoding: UTF-8
 
-spring:
-  datasource:
-    url: jdbc:mysql://16.158.102.166:3306/darklight?useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: 123456
-    # 使用druid数据源
-    driver-class-name: com.mysql.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
-    filters: stat
-    maxActive: 20
-    initialSize: 1
-    maxWait: 60000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
-
+spring:  
+  datasource:  
+    driver-class-name: com.mysql.jdbc.Driver  
+    url: jdbc:mysql://16.158.102.166:3306/darklight  
+    username: root  
+    password: 123456  
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+       dialect: org.hibernate.dialect.MySQL5Dialect
+      
 
 
 
