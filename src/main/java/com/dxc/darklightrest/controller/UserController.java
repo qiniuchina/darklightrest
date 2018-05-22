@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxc.darklightrest.entity.User;
 import com.dxc.darklightrest.repository.UserRepository;
+import com.dxc.darklightrest.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -18,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	/**
 	 * 查询所有用户列表
@@ -26,6 +27,6 @@ public class UserController {
 	@RequestMapping(value="/userList",method=RequestMethod.GET)  
 	@ApiOperation(value="获取所有的列表",notes="不需要传递参数")
 	public List<User> UserList(){  
-		return userRepository.findAll();  
+		return userService.findAll();  
 	}
 }
