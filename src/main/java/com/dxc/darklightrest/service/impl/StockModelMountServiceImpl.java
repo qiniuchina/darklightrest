@@ -9,6 +9,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dxc.darklightrest.common.util.CommonUtil;
+import com.dxc.darklightrest.entity.StockCurrentPrice;
 import com.dxc.darklightrest.repository.BlackStocksRepository;
 import com.dxc.darklightrest.repository.StockModelMountRepository;
 import com.dxc.darklightrest.service.StockModelMountService;
@@ -47,7 +49,11 @@ public class StockModelMountServiceImpl implements StockModelMountService {
 				else{
 					temp.put("CurrentInfo", STOCK_ERROR_PHASE_STR);
 				}
-				
+				StockCurrentPrice stockCurr=CommonUtil.getCurrentPriceByStockCode(CommonUtil.formatStockCode(String.valueOf(map.get("stock_code"))));
+				if(stockCurr!=null){
+					temp.put("TodayPic", String.valueOf(stockCurr.getStockPrice()));
+					temp.put("TodayPerct", String.valueOf(stockCurr.getStockUpdownPercent())+"%");
+				}
 				
 				resultMap.add(temp);
 			}
