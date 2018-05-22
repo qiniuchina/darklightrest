@@ -9,7 +9,7 @@ import com.dxc.darklightrest.entity.User;
 import com.dxc.darklightrest.repository.UserRepository;
 import com.dxc.darklightrest.service.UserService;
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
