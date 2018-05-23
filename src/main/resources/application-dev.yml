@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  session-timeout: 30
+  tomcat.uri-encoding: UTF-8
+
+spring:  
+  datasource:  
+    driver-class-name: com.mysql.jdbc.Driver  
+    url: jdbc:mysql://16.158.101.40:3307/darklight  
+    username: root  
+    password: 123456  
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+       dialect: org.hibernate.dialect.MySQL5Dialect
+      
+
+
+
