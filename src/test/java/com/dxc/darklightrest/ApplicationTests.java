@@ -1,4 +1,4 @@
-package com.dxc;
+package com.dxc.darklightrest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
