@@ -51,8 +51,8 @@ public class StockModelMountServiceImpl implements StockModelMountService {
 				}
 				StockCurrentPrice stockCurr=CommonUtil.getCurrentPriceByStockCode(CommonUtil.formatStockCode(String.valueOf(map.get("stock_code"))));
 				if(stockCurr!=null){
-					temp.put("TodayPic", String.valueOf(stockCurr.getStockPrice()));
-					temp.put("TodayPerct", String.valueOf(stockCurr.getStockUpdownPercent())+"%");
+					temp.put("TodayPic", String.valueOf(stockCurr.getStockPrice()));    // 今日股票价格
+					temp.put("TodayPerct", String.valueOf(stockCurr.getStockUpdownPercent())+"%");   //今日股票涨跌
 				}
 				
 				resultMap.add(temp);

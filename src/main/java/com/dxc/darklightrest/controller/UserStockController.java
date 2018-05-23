@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dxc.darklightrest.common.util.CommonUtil;
 import com.dxc.darklightrest.service.StockModelMountService;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value="/user")
-public class StockModelMountController {
-	
+public class UserStockController {
 	@Autowired
 	private StockModelMountService stockModelMountService;
 	
@@ -25,10 +25,16 @@ public class StockModelMountController {
 	public Map<String, Object> getStockModelMountList(String userId){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			List<Map<String, Object>> dataList = stockModelMountService.getStockModelMountList(userId);
-			resultMap.put("code", 1);
-			resultMap.put("msg", "请求成功");
-			resultMap.put("data", dataList);
+			if(!CommonUtil.isEmpty(userId)) {
+				List<Map<String, Object>> dataList = stockModelMountService.getStockModelMountList(userId);
+				resultMap.put("code", 1);
+				resultMap.put("msg", "请求成功");
+				resultMap.put("data", dataList);
+			}else {
+				resultMap.put("code", 0);
+				resultMap.put("msg", "");
+			}
+			
 		}
 		catch (Exception e) {
 			resultMap.put("code", -1);
@@ -37,4 +43,5 @@ public class StockModelMountController {
 		return resultMap;
 	}
 	
+
 }
