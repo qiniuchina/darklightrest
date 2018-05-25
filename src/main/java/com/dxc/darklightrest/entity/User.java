@@ -29,6 +29,9 @@ public class User implements java.io.Serializable {
 	private Date updateTime;
 	private String updateUser;
 
+	// 新增
+	private int subscribe;
+	
 	public User() {
 	}
 
@@ -163,5 +166,15 @@ public class User implements java.io.Serializable {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
+
+	public int getSubscribe() {
+		return subscribe;
+	}
+
+	public void setSubscribe(int subscribe) {
+		this.subscribe = subscribe;
+	}
+	
+	
 
 }

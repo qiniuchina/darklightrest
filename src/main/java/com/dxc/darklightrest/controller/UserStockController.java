@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxc.darklightrest.common.util.CommonUtil;
 import com.dxc.darklightrest.service.StockModelMountService;
+import com.dxc.darklightrest.wechat.token.TokenWeb;
+import com.dxc.darklightrest.wechat.token.TokenWebService;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value="/user")
 public class UserStockController {
 	@Autowired
 	private StockModelMountService stockModelMountService;
 	
 	@RequestMapping(value="/user_stock_list",method=RequestMethod.POST)  
 	@ApiOperation(value="",notes="")
-	public Map<String, Object> getStockModelMountList(String userId){
+	public Map<String, Object> getUserStockList(String userId){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			if(!CommonUtil.isEmpty(userId)) {
@@ -41,6 +42,16 @@ public class UserStockController {
 			resultMap.put("msg", "请求失败");
 		}
 		return resultMap;
+	}
+	
+	@RequestMapping(value="/user_stock_listwx",method=RequestMethod.POST)  
+	public Map<String, Object> getUserStockListWx(String code){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		TokenWeb tokenweb = TokenWebService.getNewTokenWebObject(code);
+		String userId = tokenweb.getOpenId();
+		resultMap = getUserStockList(userId);
+		return resultMap;
+		
 	}
 	
 
