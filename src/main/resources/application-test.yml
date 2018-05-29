@@ -6,7 +6,7 @@ server:
 spring:  
   datasource:  
     driver-class-name: com.mysql.jdbc.Driver  
-    url: jdbc:mysql://localhost:3306/darklight  
+    url: jdbc:mysql://16.158.102.166:3306/darklight  
     username: root  
     password: 123456  
   jpa:
