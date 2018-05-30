@@ -34,6 +34,7 @@ import org.apache.http.client.params.CookiePolicy;
 import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.conn.params.ConnManagerParams;
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -52,6 +53,8 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
+import com.dxc.darklightrest.common.util.CommonUtil;
+
 /**
  * 基于org.apache.httpClient的Http实现类
  * 
@@ -68,16 +71,16 @@ public class HttpClientImpl implements Http {
 		HttpProtocolParams.setVersion(httpParams, HttpVersion.HTTP_1_1);
 		HttpProtocolParams.setUserAgent(httpParams, "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; EmbeddedWB 14.52 from: http://www.bsalsa.com/ EmbeddedWB 14.52; .NET CLR 2.0.50727)");
 
-// String proxyHost = ConfFactory.getConf().get("http.proxy.host");
-//		if (CommonUtil.notEmpty(proxyHost)) {
-//			try {
-//				int proxyPort = ConfFactory.getConf().getInt("http.proxy.port",8080);
-//				HttpHost proxy = new HttpHost(proxyHost, proxyPort);
-//				httpParams.setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
-//			} catch (NumberFormatException e) {
-//				e.printStackTrace();
-//			}
-//		}
+	 String proxyHost = System.getProperty("http.proxyHost");
+			if (CommonUtil.notEmpty(proxyHost)) {
+				try {
+					int proxyPort = Integer.parseInt(System.getProperty("http.proxyPort"));
+					HttpHost proxy = new HttpHost(proxyHost, proxyPort);
+					httpParams.setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+			}
 
 		SchemeRegistry schemeRegistry = new SchemeRegistry();
 		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
