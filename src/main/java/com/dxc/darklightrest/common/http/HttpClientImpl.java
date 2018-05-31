@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
@@ -63,6 +65,7 @@ import com.dxc.darklightrest.common.util.CommonUtil;
 @SuppressWarnings("deprecation")
 public class HttpClientImpl implements Http {
 	{
+		final Log log = LogFactory.getLog(HttpClientImpl.class);
 		httpParams = new BasicHttpParams();
 		httpParams.setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BROWSER_COMPATIBILITY);
 		HttpConnectionParams.setConnectionTimeout(httpParams, 60000);
@@ -72,9 +75,11 @@ public class HttpClientImpl implements Http {
 		HttpProtocolParams.setUserAgent(httpParams, "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; EmbeddedWB 14.52 from: http://www.bsalsa.com/ EmbeddedWB 14.52; .NET CLR 2.0.50727)");
 
 	 String proxyHost = System.getProperty("http.proxyHost");
+	 log.info("proxy:"+proxyHost);
 			if (CommonUtil.notEmpty(proxyHost)) {
 				try {
 					int proxyPort = Integer.parseInt(System.getProperty("http.proxyPort"));
+					log.info("proxy"+proxyHost+":"+proxyPort);
 					HttpHost proxy = new HttpHost(proxyHost, proxyPort);
 					httpParams.setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
 				} catch (NumberFormatException e) {
