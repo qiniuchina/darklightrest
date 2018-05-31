@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
@@ -63,6 +65,7 @@ import com.dxc.darklightrest.common.util.CommonUtil;
 @SuppressWarnings("deprecation")
 public class HttpClientImpl implements Http {
 	{
+		final Log log = LogFactory.getLog(HttpClientImpl.class);
 		httpParams = new BasicHttpParams();
 		httpParams.setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BROWSER_COMPATIBILITY);
 		HttpConnectionParams.setConnectionTimeout(httpParams, 60000);
@@ -75,6 +78,7 @@ public class HttpClientImpl implements Http {
 			if (CommonUtil.notEmpty(proxyHost)) {
 				try {
 					int proxyPort = Integer.parseInt(System.getProperty("http.proxyPort"));
+					log.info("proxy"+proxyHost+":"+proxyPort);
 					HttpHost proxy = new HttpHost(proxyHost, proxyPort);
 					httpParams.setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
 				} catch (NumberFormatException e) {
