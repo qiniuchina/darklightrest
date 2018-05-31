@@ -75,6 +75,7 @@ public class HttpClientImpl implements Http {
 		HttpProtocolParams.setUserAgent(httpParams, "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; EmbeddedWB 14.52 from: http://www.bsalsa.com/ EmbeddedWB 14.52; .NET CLR 2.0.50727)");
 
 	 String proxyHost = System.getProperty("http.proxyHost");
+	 log.info("proxy:"+proxyHost);
 			if (CommonUtil.notEmpty(proxyHost)) {
 				try {
 					int proxyPort = Integer.parseInt(System.getProperty("http.proxyPort"));
