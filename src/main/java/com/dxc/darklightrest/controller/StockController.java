@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping(value="/stock")
 public class StockController 
 {
-	@RequestMapping(value="/stock_list",method=RequestMethod.POST)  
+	@RequestMapping(value="/stock_list",method=RequestMethod.GET)  
 	@ApiOperation(value="",notes="")
 	public Map<String, Object> getStockList(){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
