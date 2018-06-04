@@ -34,6 +34,7 @@ public class StockController
 			resultMap.put("shPrice", shPrice);
 			resultMap.put("szPrice", szPrice);
 			resultMap.put("cyPrice", cyPrice);
+			resultMap.put("code", 1);
 		 }
 		catch (Exception e) {
 			resultMap.put("code", -1);
