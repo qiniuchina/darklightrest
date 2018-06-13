@@ -21,7 +21,7 @@ public class UserStockController {
 	@Autowired
 	private StockModelMountService stockModelMountService;
 	
-	@RequestMapping(value="/user_stock_list",method=RequestMethod.POST)  
+	@RequestMapping(value="/user_stock_list",method= {RequestMethod.POST, RequestMethod.GET})  
 	@ApiOperation(value="",notes="")
 	public Map<String, Object> getUserStockList(String userId){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
