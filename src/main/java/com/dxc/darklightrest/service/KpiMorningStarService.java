@@ -1,5 +1,6 @@
 package com.dxc.darklightrest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,5 +24,5 @@ public interface KpiMorningStarService {
 	 * MorningStarDays:  //持续早晨之星阶段的天数
 	 * @return
 	 */
-	List<Map<String, Object>> findAllKMSInfo();
+	List<ArrayList<Map<String, Object>>> findAllKMSInfo();
 }

@@ -1,5 +1,6 @@
 package com.dxc.darklightrest.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class KpiMoriningStarController {
 	public Map<String, Object> getAllMorningStarInfo() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			List<Map<String, Object>> dataList = kpiMorningStarService.findAllKMSInfo();
+			List<ArrayList<Map<String, Object>>> dataList = kpiMorningStarService.findAllKMSInfo();
 			resultMap.put("code", 1);
 			resultMap.put("msg", "请求成功");
 			resultMap.put("data", dataList);
